@@ -1,5 +1,6 @@
-const express = require("express");
-const app = express();
+const express = require("express"); //引入 express library
+const app = express(); // express 引入的是一個 function
+
 
 app.listen(3000, () => {
   console.log("project is running!");
@@ -10,9 +11,12 @@ app.get("/", (req, res) => {
 })
 
 const Discord = require("discord.js");
-const client = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"] });
+const client = new Discord.Client({
+  intents: ["GUILDS", "GUILD_MESSAGES"],
+  allowedMentions: ["users"]
+});
 const fs = require("fs");
-const prefix = ""
+const prefix = "f!"
 client.commands = new Discord.Collection();
 const commands = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 for (file of commands) {
